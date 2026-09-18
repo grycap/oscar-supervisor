@@ -117,14 +117,6 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w" \
 
 ## Deployment in OSCAR
 
-The supervisor is mounted into the pod from the **supervisor PV** (typically
-`/pv/pvc-<id>/supervisor`). To update it:
-
-```bash
-scp dist/binaries/supervisor-arm64 my_cluster:/pv/pvc-<id>/supervisor
-ssh my_cluster 'file /pv/pvc-<id>/supervisor'   # verify "ELF ... ARM aarch64, statically linked"
-```
-
 The function config lives in `/oscar/config/function_config.yaml` (or `FUNCTION_CONFIG` in base64).
 The user script can be `/oscar/config/script.sh` or defined with the `SCRIPT` environment variable
 (base64, written to `$TMP_INPUT_DIR/script.sh`).
