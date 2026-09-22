@@ -6,7 +6,7 @@
 # CGO_ENABLED=0 every binary is STATIC and works with both glibc and musl
 # (no "-alpine" variants needed, unlike PyInstaller binaries).
 #
-# Output: dist/binaries/<name> and dist/binaries/<name>.zip
+# Output: dist/binaries/<name>
 set -euo pipefail
 
 cd "$(dirname "$0")"
@@ -53,21 +53,6 @@ build freebsd arm64 ""    supervisor-freebsd-arm64
 build freebsd 386 ""      supervisor-freebsd-386
 build freebsd arm ""      supervisor-freebsd-arm
 build freebsd riscv64 ""  supervisor-freebsd-riscv64
-
-# ---- Package each binary into a zip (like the original distribution) ----
-echo ""
-echo "==> Packaging zips..."
-(
-	cd "$OUT"
-	shopt -s nullglob
-	for f in *; do
-		[ -f "$f" ] || continue
-		case "$f" in
-		*.zip) continue ;;
-		esac
-		zip -q -9 "${f}.zip" "$f"
-	done
-)
 
 echo ""
 echo "==> Done. Binaries in: $(pwd)/$OUT"

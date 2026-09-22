@@ -85,7 +85,7 @@ file build/faassupervisor        # should say "statically linked" if you used CG
 
 ### Cross-compile for all architectures
 
-`./build.sh` builds **25 targets** into `dist/binaries/<name>` (and its `.zip`): `CGO_ENABLED=0`,
+`./build.sh` builds **25 targets** into `dist/binaries/<name>`: `CGO_ENABLED=0`,
 `-trimpath`, `-ldflags="-s -w"`, `GOMIPS/GOMIPS64=softfloat`:
 
 | Platform | Architectures | Output names |
@@ -143,7 +143,7 @@ internal/
   supervisor/              supervisor logic (Generic/Binary/Lambda)
   utils/                   OS/file helpers
 build.sh                   multi-architecture cross-compilation → dist/binaries/
-dist/binaries/             generated binaries (+ .zip)
+dist/binaries/             generated binaries
 ```
 
 References: `SPEC.md`, the Python code in `../faassupervisor/`, and session/working notes in
